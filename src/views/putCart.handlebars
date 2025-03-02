@@ -1,0 +1,27 @@
+<div class="container mt-5">
+    <h1>Actualizar Cantidades del Carrito</h1>
+    <form action="/api/cart/put/{{cart._id}}?_method=PUT" method="POST">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each cart.products}}
+                <tr>
+                    <td>{{this.product.title}}</td>
+                    <td>
+                        <input type="number" name="quantities" value="{{this.quantity}}" min="1" required>
+                        <input type="hidden" name="productIds" value="{{this.product._id}}">
+                    </td>
+                    <td>${{this.product.price}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary">Actualizar Carrito</button>
+    </form>
+</div>

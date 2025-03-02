@@ -1,0 +1,46 @@
+ <h1>productos por categoria</h1>
+<div class="row">
+    {{#each products.payload}}
+   
+    <div class="col-md-4 mb-4">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title text-center">{{this.title}}</h5>
+                <p class="card-text">{{this.description}}</p>
+                <p class="card-text"><strong>Precio:</strong> ${{this.price}}</p>
+                <p class="card-text"><strong>Stock:</strong> {{this.stock}}</p>
+                <div>
+                    <a href="/api/product/{{this._id}}" class="btn btn-info mb-2">Ver detalles</a>
+                </div>
+                <div>
+                    <a href="/api/product/put/{{this._id}}" class="btn btn-primary mb-2">Actualizar datos</a>
+                </div>
+                <div class="mb-2">
+                    <form action="/api/product/{{this._id}}?_method=DELETE" method="POST" style="display:inline;">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="btn btn-danger" type="submit">Eliminar</button>
+                    </form>
+                </div>
+                <div>
+                    <form action="/api/cart" method="POST" style="display:inline;" class="product-form">
+                        <input type="hidden" class="form-control" name="title" value="{{this.title}}" required>
+                        <input type="hidden" class="form-control" name="description" value="{{this.description}}"
+                            required>
+                        <input type="hidden" class="form-control" name="code" value="{{this.code}}" required>
+                        <input type="hidden" class="form-control" name="price" value="{{this.price}}" required>
+                        <input type="hidden" class="form-control stock" name="stock" value="{{this.stock}}" required>
+                        <input type="hidden" class="form-control" name="category" value="{{this.category}}" required>
+                        <input id="status" name="status" value="true" type="hidden">
+                        <input type="number" placeholder="Cantidad de productos a comprar" name="quantity" value="1"
+                            min="1" required class="quantity-input">
+                        <button class="add-to-cart-btn btn btn-success" type="submit"
+                            style="display: inline-block;">Agregar al carrito</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+
+<script src="/js/addCart.js"></script>
