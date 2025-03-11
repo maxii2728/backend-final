@@ -1,10 +1,16 @@
 <div class="container mt-5">
     <h1>Actualizar Cantidad del Producto</h1>
-    <form action="/api/cart/{{cartId}}/products/{{productId}}?_method=PUT" method="POST">
+    <div id="message-container"></div>
+    <form action="/api/cart/{{cartId}}/products/{{productId}}?_method=PUT" method="POST" id="update-quantity-form">
         <div class="form-group">
             <label for="quantity">Nueva Cantidad:</label>
-            <input type="number" id="quantity" name="quantity" min="1" value="{{currentQuantity}}" required>
+            <input type="number" id="quantity" name="quantity" min="1" value="{{currentQuantity}}" required class="form-control">
+            <small class="form-text text-muted">
+                Recuerda que la cantidad total de este producto en el carrito no puede superar el stock disponible.
+            </small>
         </div>
-        <button type="submit" class="btn btn-primary">Actualizar Cantidad individual</button>
+        <button type="submit" class="btn btn-primary mt-3">Actualizar Cantidad</button>
+        <a href="/api/cart/{{cartId}}" class="btn btn-secondary mt-3 ml-2">Volver al Carrito</a>
     </form>
 </div>
+<script src="/js/updateCart.js"></script>

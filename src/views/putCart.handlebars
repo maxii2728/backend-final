@@ -1,5 +1,6 @@
 <div class="container mt-5">
     <h1>Actualizar Cantidades del Carrito</h1>
+    <div id="message-container"></div>
     <form action="/api/cart/put/{{cart._id}}?_method=PUT" method="POST">
         <table class="table table-bordered">
             <thead>
@@ -25,3 +26,4 @@
         <button type="submit" class="btn btn-primary">Actualizar Carrito</button>
     </form>
 </div>
+<script src="/js/updateCart.js"></script>
